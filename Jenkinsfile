@@ -11,41 +11,40 @@ pipeline {
         }
         stage('Build User Service') {
             steps {
-                dir('backend/user-service') { // Remplacez par le nom du service que vous souhaitez construire
+                dir('backend/user-service') {
                     sh 'mvn clean install'
                 }
             }
         }
         stage('Build Lab Service') {
             steps {
-                dir('backend/lab-service') { // Remplacez par le service à construire
+                dir('backend/lab-service') {
                     sh 'mvn clean install'
                 }
             }
         }
         stage('Build Analys Service') {
             steps {
-                dir('backend/analysis-service') { // Remplacez par le service à construire
+                dir('backend/analys-service') { // Correction ici
                     sh 'mvn clean install'
                 }
             }
         }
         stage('Build API Gateway') {
             steps {
-                dir('backend/api-gateway') { // Remplacez par le service à construire
+                dir('backend/api-gateway') {
                     sh 'mvn clean install'
                 }
             }
         }
-    }
-    stage('Build Frontend') {
+        stage('Build Frontend') {
             steps {
                 dir('frontend') { // Changez le chemin vers votre projet frontend si nécessaire
-                    sh 'npm install' // ou la commande que vous utilisez pour construire votre frontend
+                    sh 'npm install' // Installe les dépendances
+                    sh 'npm run build' // Ajoutez cette ligne pour construire votre application Angular
                 }
             }
         }
-
         stage('Deploy') {
             steps {
                 echo 'Déploiement en cours...'
