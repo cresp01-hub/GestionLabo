@@ -1,42 +1,47 @@
 pipeline {
     agent any
+
+    tools {
+        maven 'maven-3.9.6' // Remplacez par le nom de votre installation Maven dans Jenkins
+    }
+
     stages {
-        stage('Checkout') {
+        stage('Checkout SCM') {
             steps {
-                // Vérifie le code source depuis GitHub
                 checkout scm
             }
         }
+
         stage('Build Backend') {
             steps {
-                dir('backend') {
-                    // Construire le backend avec Maven
+                dir('backend') { // Changez le chemin vers votre projet backend si nécessaire
                     sh 'mvn clean install'
                 }
             }
         }
+
         stage('Build Frontend') {
             steps {
-                dir('frontend') {
-                    // Construire le frontend avec npm
-                    sh 'npm install'
-                    sh 'npm run build'
+                dir('frontend') { // Changez le chemin vers votre projet frontend si nécessaire
+                    sh 'npm install' // ou la commande que vous utilisez pour construire votre frontend
                 }
             }
         }
+
         stage('Deploy') {
             steps {
-                // Ajoutez ici les étapes pour déployer votre application
-                echo 'Déploiement de l’application...'
+                echo 'Déploiement en cours...'
+                // Ajoutez vos étapes de déploiement ici
             }
         }
     }
+
     post {
         success {
-            echo 'Pipeline exécuté avec succès !'
+            echo 'Pipeline exécuté avec succès!'
         }
         failure {
-            echo 'Échec de l’exécution du pipeline.'
+            echo 'Le pipeline a échoué!'
         }
     }
 }
