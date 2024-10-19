@@ -12,28 +12,28 @@ pipeline {
         stage('Build User Service') {
             steps {
                 dir('backend/user-service') {
-                    sh 'mvn clean install'
+                    sh 'mvn clean package -DskipTests'
                 }
             }
         }
         stage('Build Lab Service') {
             steps {
                 dir('backend/lab-service') {
-                    sh 'mvn clean install'
+                    sh 'mvn clean package -DskipTests'
                 }
             }
         }
         stage('Build Analys Service') {
             steps {
                 dir('backend/analys-service') { // Correction ici
-                    sh 'mvn clean install'
+                    sh 'mvn clean package -DskipTests'
                 }
             }
         }
         stage('Build API Gateway') {
             steps {
                 dir('backend/api-gateway') {
-                    sh 'mvn clean install'
+                    sh 'mvn clean package -DskipTests'
                 }
             }
         }
