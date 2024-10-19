@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Build Analys Service') {
             steps {
-                dir('backend/analys-service') { // Correction ici
+                dir('backend/analysis-service') { // Correction ici
                     sh 'mvn clean package -DskipTests'
                 }
             }
