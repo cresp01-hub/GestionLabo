@@ -46,24 +46,31 @@ pipeline {
             }
         }
         stage('Deploy') {
-            steps {
-                echo 'Déploiement en cours...'
-                 // Déployer l'API Gateway
+    steps {
+        echo 'Déploiement en cours...'
+        // Déployer l'API Gateway
         sh '''
+        docker stop api-gateway || true
+        docker rm api-gateway || true
         docker run -d --name api-gateway -p 8080:8080 api-gateway:latest
         '''
 
         // Déployer le User Service
         sh '''
+        docker stop user-service || true
+        docker rm user-service || true
         docker run -d --name user-service -p 8081:8080 user-service:latest
         '''
 
         // Déployer le frontend 
         sh '''
-        docker run -d --name frontend -p 80:80 frontend:latest
+        docker stop frontend || true
+        docker rm frontend || true
+        docker run -d --name frontend -p 4200:80 frontend:latest
         '''
-            }
-        }
+    }
+}
+
     }
 
     post {
