@@ -79,8 +79,8 @@ stage('Push to Docker Hub') {
 
             // Taguer et pousser l'image de l'API Gateway
             sh '''
-            docker tag api-gateway:latest your-dockerhub-username/api-gateway:latest
-            docker push your-dockerhub-username/api-gateway:latest
+            docker tag api-gateway:latest mosaablachhab/api-gateway:latest
+            docker push mosaablachhab/api-gateway:latest
             '''
 
             // Taguer et pousser l'image du User Service
