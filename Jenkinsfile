@@ -50,17 +50,17 @@ pipeline {
                 echo 'Déploiement en cours...'
                  // Déployer l'API Gateway
         sh '''
-        docker run -d --name api-gateway -p 8080:8080 my-app/api-gateway:latest
+        docker run -d --name api-gateway -p 8080:8080 api-gateway:latest
         '''
 
         // Déployer le User Service
         sh '''
-        docker run -d --name user-service -p 8081:8080 my-app/user-service:latest
+        docker run -d --name user-service -p 8081:8080 user-service:latest
         '''
 
         // Déployer le frontend 
         sh '''
-        docker run -d --name frontend -p 80:80 my-app/frontend:latest
+        docker run -d --name frontend -p 80:80 frontend:latest
         '''
             }
         }
