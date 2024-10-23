@@ -75,7 +75,7 @@ stage('Push to Docker Hub') {
     steps {
         script {
             // Se connecter à Docker Hub
-            sh 'echo "$lasvega7LAMA" | docker login -u "$Mosaab Lachhab" --password-stdin'
+            sh 'echo "lasvega7LAMA" | docker login -u "mosaablachhab06@gmail.com" --password-stdin'
 
             // Taguer et pousser l'image de l'API Gateway
             sh '''
