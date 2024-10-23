@@ -66,7 +66,7 @@ pipeline {
         sh '''
         docker stop frontend || true
         docker rm frontend || true
-        docker run -d --name frontend -p 4200:80 frontend:latest
+        docker run -d --name frontend -p 4200:80 frontend-app:latest
         '''
     }
 }
