@@ -71,6 +71,33 @@ pipeline {
     }
 }
 
+stage('Push to Docker Hub') {
+    steps {
+        script {
+            // Se connecter à Docker Hub
+            sh 'echo "$lasvega7LAMA" | docker login -u "$Mosaab Lachhab" --password-stdin'
+
+            // Taguer et pousser l'image de l'API Gateway
+            sh '''
+            docker tag api-gateway:latest your-dockerhub-username/api-gateway:latest
+            docker push your-dockerhub-username/api-gateway:latest
+            '''
+
+            // Taguer et pousser l'image du User Service
+            //sh '''
+           // docker tag user-service:latest your-dockerhub-username/user-service:latest
+          //  docker push your-dockerhub-username/user-service:latest
+          //  '''
+
+            // Taguer et pousser l'image du Frontend
+           // sh '''
+           // docker tag frontend:latest your-dockerhub-username/frontend:latest
+           // docker push your-dockerhub-username/frontend:latest
+           // '''
+        }
+    }
+}
+
     }
 
     post {
