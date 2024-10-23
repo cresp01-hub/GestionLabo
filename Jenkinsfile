@@ -48,7 +48,20 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Déploiement en cours...'
-                // Ajoutez vos étapes de déploiement ici
+                 // Déployer l'API Gateway
+        sh '''
+        docker run -d --name api-gateway -p 8080:8080 my-app/api-gateway:latest
+        '''
+
+        // Déployer le User Service
+        sh '''
+        docker run -d --name user-service -p 8081:8080 my-app/user-service:latest
+        '''
+
+        // Déployer le frontend 
+        sh '''
+        docker run -d --name frontend -p 80:80 my-app/frontend:latest
+        '''
             }
         }
     }
