@@ -2,12 +2,13 @@ version: '3.8'
 
 services:
   mysql-db:
-    image: mysql:latest
-    container_name: mysql-db
-    environment:
-      MYSQL_ROOT_PASSWORD: lasvega7LAMA
-    ports:
-      - "3306:3306"
+  image: mysql:latest
+  container_name: mysql-db
+  environment:
+    MYSQL_ROOT_PASSWORD: lasvega7LAMA
+  ports:
+    - "3307:3306"  # Mappe le port 3307 de l'hôte au port 3306 du conteneur
+
 
   api-gateway:
     image: api-gateway:latest
